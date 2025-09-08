@@ -61,7 +61,9 @@ CreateFolderIfNotExist ${INFERENCE_FOLDER}
 
 cp ${IMG_INPUT_DENOISED_ONLY_B0_MEAN_N4} ${IMAGE_TS}/exvivobrain_000_0000.nii.gz
 #cp ${IMG_INPUT_DENOISED_ONLY_DW_MEAN_N4} ${IMAGE_TS}/exvivobrain_000_0001.nii.gz
-cp template.json ${DATASET_FOLDER}/dataset.json
+cp templateb0.json ${DATASET_FOLDER}/dataset.json
+#cp templateboth.json ${DATASET_FOLDER}/dataset.json
+
 
 ZIP_FOLDER=../Zip
 CreateFolderIfNotExist ${ZIP_FOLDER}
