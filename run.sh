@@ -60,7 +60,7 @@ CreateFolderIfNotExist ${IMAGE_TS}
 CreateFolderIfNotExist ${INFERENCE_FOLDER}
 
 cp ${IMG_INPUT_DENOISED_ONLY_B0_MEAN_N4} ${IMAGE_TS}/exvivobrain_000_0000.nii.gz
-cp ${IMG_INPUT_DENOISED_ONLY_DW_MEAN_N4} ${IMAGE_TS}/exvivobrain_000_0001.nii.gz
+#cp ${IMG_INPUT_DENOISED_ONLY_DW_MEAN_N4} ${IMAGE_TS}/exvivobrain_000_0001.nii.gz
 cp template.json ${DATASET_FOLDER}/dataset.json
 
 ZIP_FOLDER=../Zip
@@ -75,6 +75,7 @@ fi
 #if [[ ! -f ${ZIP_FOLDER}/${ZIP}  ]]; then
 #unzip ${ZIP_FOLDER}/${ZIP} -d ${nnUNet_results}
 
+#source nnunetv2-cpu-env
 source ../ExVivoMouseBrainPyEnv/bin/activate
 
 logCmd nnUNetv2_predict \
