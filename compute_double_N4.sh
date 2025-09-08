@@ -71,8 +71,6 @@ function CheckFile() {
   CONVERGENCE_2=200x200x200x200
  fi
 
-
-
 MASK_OTSU_RESAMPLED_FIRST=${TMP}/mask_otsu_first.nii.gz
 MASK_OTSU_RESAMPLED_SECOND=${TMP}/mask_otsu_second.nii.gz
 
