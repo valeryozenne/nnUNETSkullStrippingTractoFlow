@@ -1,5 +1,3 @@
-#!/bin/bash
-
 depuis Code/
 
 python3 -m venv ../ExVivoMouseBrainPyEnv
