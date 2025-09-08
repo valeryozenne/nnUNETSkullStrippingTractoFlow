@@ -2,10 +2,47 @@
 
 # Nouveau model
 
-suppose que le denoising mppca fait (typqiuement dwi denoise de mrtrix) 
-TODO surement possibilité de se passer de mrtrix voir de ANTs , c'est juste pour extraire b0 et dw
+* suppose que le denoising mppca fait (typiquement dwi denoise de mrtrix) 
+* TODO surement possibilité de se passer de mrtrix voir de ANTs , c'est juste pour extraire b0 et dw
 puis pour appliquer le filtre N4 de itk.
 
+# Oragnisation
+
+```
+.
+├── Code (mon mini code)
+├── Database (base de donnée avec image de dwi et model)
+├── ExVivoMouseBrainPyEnv (environnement python avec torch et nnunet)
+├── Input (dossier temporaire pour image dwi et preprocessing)
+├── nnUNet (code nnunet)
+└── Zip (dossier temporaire pour stocker le modèle)
+
+```
+
+
+```
+Database/
+├── INFERENCE
+├── PRE
+├── RAW
+│   └── Dataset013_ExVivoBrainDSb0  
+│       ├── imagesTr
+│       ├── imagesTs  (input data: b0 + dw)
+│       └── labelsTr
+└── RESULTS
+    └── Dataset013_ExVivoBrainDSb0   (model pré-entrainé)
+        └── nnUNetTrainer__nnUNetPlans__3d_fullres
+            ├── fold_0
+            │   └── validation
+            ├── fold_1
+            │   └── validation
+            ├── fold_2
+            │   └── validation
+            ├── fold_3
+            │   └── validation
+            └── fold_4
+                └── validation
+```                
 
 # Avec GPU
 
@@ -61,7 +98,7 @@ deactivate
 
 Il faut un docker sous ubuntu 20 ? avec ants et mrtrix dedans.
 
-Puis il faut installer pytorch 2.3.0 avec cuda 12.2
+Puis il faut installer pytorch 2.3.0 
 
 
 installation de pytorch
