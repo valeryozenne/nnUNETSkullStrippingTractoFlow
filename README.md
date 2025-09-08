@@ -2,8 +2,8 @@
 
 # Nouveau model
 
-suppose que le denoising mppca fait (typqiuement dwi denoise de mrtrix) 
-TODO surement possibilité de se passer de mrtrix voir de ANTs , c'est juste pour extraire b0 et dw
+* suppose que le denoising mppca fait (typiquement dwi denoise de mrtrix) 
+* TODO surement possibilité de se passer de mrtrix voir de ANTs , c'est juste pour extraire b0 et dw
 puis pour appliquer le filtre N4 de itk.
 
 
@@ -61,7 +61,7 @@ deactivate
 
 Il faut un docker sous ubuntu 20 ? avec ants et mrtrix dedans.
 
-Puis il faut installer pytorch 2.3.0 avec cuda 12.2
+Puis il faut installer pytorch 2.3.0 
 
 
 installation de pytorch
