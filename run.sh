@@ -7,13 +7,7 @@
 # PREPROCESSING
 ###############################
 
-CreateFolderIfNotExist ../Input
-
-IMG_INPUT=../Input/input.nii.gz
-
-if [[ ! -f ../Input/input.nii.gz  ]]; then
-scp XXXXXXXXX@XXXXXXXXXXXXXXXX:/home/valeryozenne/mount/Imagerie/DICOM_DATA/2022-12-20_ExVivoBrain/all/before/13/c140_dwi.nii.gz ../Input/input.nii.gz
-fi
+IMG_INPUT=../Input2/input.nii.gz
 
 CheckFile ${IMG_INPUT}
 
@@ -24,8 +18,6 @@ IMG_INPUT_DENOISED_ONLY_DW_MEAN_N4=$(echo ${IMG_INPUT} | sed 's/.nii.gz/_dw_mean
 
 ls ${IMG_INPUT_DENOISED_ONLY_B0_MEAN_N4}
 ls ${IMG_INPUT_DENOISED_ONLY_DW_MEAN_N4}
-
-
 
 ###############################
 # NNUNET INFERENCE
