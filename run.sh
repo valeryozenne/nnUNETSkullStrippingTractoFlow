@@ -46,7 +46,10 @@ echo ${nnUNet_raw}
 echo ${nnUNet_preprocessed}
 echo ${nnUNet_results}
 
-DATASET_FOLDER=${nnUNet_raw}/Dataset013_ExVivoBrainDSb0/
+# modele utilisant uniquement le b0
+#DATASET_FOLDER=${nnUNet_raw}/Dataset013_ExVivoBrainDSb0/
+# modele utilisant le b0 et le dw
+DATASET_FOLDER=${nnUNet_raw}/Dataset012_ExVivoBrainFSboth/
 IMAGE_TS=${DATASET_FOLDER}/imagesTs/
 IMAGE_TR=${DATASET_FOLDER}/imagesTr/
 LABEL_TR=${DATASET_FOLDER}/labelsTr/
@@ -59,37 +62,47 @@ CreateFolderIfNotExist ${LABEL_TR}
 CreateFolderIfNotExist ${IMAGE_TS}
 CreateFolderIfNotExist ${INFERENCE_FOLDER}
 
-cp ${IMG_INPUT_DENOISED_ONLY_B0_MEAN_N4} ${IMAGE_TS}/exvivobrain_000_0000.nii.gz
-#cp ${IMG_INPUT_DENOISED_ONLY_DW_MEAN_N4} ${IMAGE_TS}/exvivobrain_000_0001.nii.gz
-cp templateb0.json ${DATASET_FOLDER}/dataset.json
-#cp templateboth.json ${DATASET_FOLDER}/dataset.json
+# modele utilisant uniquement le b0
+#cp templateb0.json ${DATASET_FOLDER}/dataset.json
+#cp ${IMG_INPUT_DENOISED_ONLY_B0_MEAN_N4} ${IMAGE_TS}/exvivobrain_000_0000.nii.gz
 
+# modele utilisant le b0 et le dw
+cp templateboth.json ${DATASET_FOLDER}/dataset.json
+cp ${IMG_INPUT_DENOISED_ONLY_B0_MEAN_N4} ${IMAGE_TS}/exvivobrain_000_0000.nii.gz
+cp ${IMG_INPUT_DENOISED_ONLY_DW_MEAN_N4} ${IMAGE_TS}/exvivobrain_000_0001.nii.gz
 
 ZIP_FOLDER=../Zip
 CreateFolderIfNotExist ${ZIP_FOLDER}
-ZIP=Dataset013_ExVivoBrainDSb0.zip
-## télécharge le model le model
-if [[ ! -f ${ZIP_FOLDER}/${ZIP}  ]]; then
-scp -r XXXXXXXXXX@XXXXXXXXXXXXXXX:/workspace_QMRI/PROJECTS_DATA/2025_RECH_NN_UNET/RESULTS/VO/Dataset013_ExVivoBrainDSb0.zip  ${nnUNet_results}/${ZIP}
-fi
+# modele utilisant le b0 et le dw
+ZIP=Dataset012_ExVivoBrainFSboth.zip
+# modele utilisant uniquement le b0
+#ZIP=Dataset013_ExVivoBrainDSb0.zip
 
-# mettre une condition pour extraire le model
-#if [[ ! -f ${ZIP_FOLDER}/${ZIP}  ]]; then
+# mettre une condition
 #unzip ${ZIP_FOLDER}/${ZIP} -d ${nnUNet_results}
+
 
 #source nnunetv2-cpu-env
 source ../ExVivoMouseBrainPyEnv/bin/activate
 
+if [ -f ${nnUNet_results}/Dataset012_ExVivoBrainFSboth/nnUNetTrainer__nnUNetPlans__3d_fullres/dataset.json ]; then
+
 logCmd nnUNetv2_predict \
   -i ${IMAGE_TS} \
   -o ${INFERENCE_FOLDER}/ \
-  -d 013 \
+  -d 012 \
   -c 3d_fullres \
-  -f 0 \
+  -f all \
   -npp 1\
   -nps 1\
   -device 'cpu' \
   -tr nnUNetTrainer \
   -chk checkpoint_best.pth
+
+else
+
+echo 'pb le modele nest pas la'
+
+fi
 
   deactivate
