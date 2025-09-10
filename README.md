@@ -5,10 +5,14 @@
 * applique undouble N4 avec ANTs
 * copie les fichiers d'entrée après préprocessing  au bon endroit dans le dossier `Database/RAW`
 * copie les fichiers du model au bon endroit dans le dossier `Database/RESULTS`
-* effectue l'inférence les fichiers du model au bon endroit dans le dossier `Database/RESULTS`
+* effectue l'inférence le résultat est dans le dossier `Database/INFERENCE`
     
-* TODO il faudrait utiliser une version plus récente de nnunet   
+* TODO il faudrait utiliser une version plus récente de nnUNet   
 * TODO surement possibilité de se passer de mrtrix voir de ANTs et replacer via des outils de Sherbrooke
+
+# News
+
+le modèle 13 est caduque, il faut utiliser le modèle 12 qui prend conjointement les images b0 moyennées et les images pondérées en diffusion (dw) moyennées
 
 # Organisation
 
@@ -64,23 +68,37 @@ Il faut un docker sous ubuntu 20 ? avec ants et mrtrix dedans.
 Puis il faut installer pytorch 2.3.0 
 
 
-installation de pytorch
+créer l'enviroennement virtuel python et l'activer
 ```
 python -m venv nnunetv2-cpu-env
 source nnunetv2-cgpu-env/bin/activate
-pip install torch==2.3.0 torchvision==0.18.0 torchaudio==2.3.0 --index-url https://download.pytorch.org/whl/cpu
+```
+
+rappel pour activer
+```
+source nnunetv2-cgpu-env/bin/activate
+```
+pour desactiver
+```
 deactivate
+```
+
+installation de pytorch
+```
+pip install torch==2.3.0 torchvision==0.18.0 torchaudio==2.3.0 --index-url https://download.pytorch.org/whl/cpu
+
 
 ```
 
 ```
-source nnunetv2-cpu-env/bin/activate
+
 git clone git@github.com:MIC-DKFZ/nnUNet-cp.git
 cd nnUNet
 git checkout v2.2
 pip install -e .
-deactivate
 ```
+
+
 
 
 # Avec GPU 
