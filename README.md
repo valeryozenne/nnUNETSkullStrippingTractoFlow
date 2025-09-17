@@ -34,30 +34,15 @@ Database/
 ├── RAW
 │   ├── Dataset012_ExVivoBrainFSboth
 │   │   ├── imagesTr
-│   │   ├── imagesTs
+│   │   ├── imagesTs (input data: b0 + dw)
 │   │   └── labelsTr
-│   └── Dataset013_ExVivoBrainDSb0  
-│       ├── imagesTr
-│       ├── imagesTs  (input data: b0 + dw)
-│       └── labelsTr
 └──  RESULTS
     ├── Dataset012_ExVivoBrainFSboth  (best model pré-entrainé)
-    │   └── nnUNetTrainer__nnUNetPlans__3d_fullres
-    │       ├── crossval_results_folds_0_1_2_3_4
-    │       └── fold_all
-    │           └── validation
-    └── Dataset013_ExVivoBrainDSb0   (model pré-entrainé)
         └── nnUNetTrainer__nnUNetPlans__3d_fullres
-            ├── fold_0
-            │   └── validation
-            ├── fold_1
-            │   └── validation
-            ├── fold_2
-            │   └── validation
-            ├── fold_3
-            │   └── validation
-            └── fold_4
+            ├── crossval_results_folds_0_1_2_3_4
+            └── fold_all
                 └── validation
+
 ```                
 
 
